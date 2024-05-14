@@ -20,7 +20,7 @@ Also note that the `blog` prefix is not used for static pages which will be acce
 
 Your first site on a fresh install will put uploaded files in the traditional location of `/wp-content/uploads/`, however all _subsequent_ sites on your network will be in the `/wp-content/uploads/sites/` folder, in their own subfolder based on the site number, designated by the database. These files will be accessible via that URL.
 
-This is a change from Multisite 3.0-3.4.2, where images of subsites were stored in `/wp-content/blogs.dir/` and were shown in `http://example.com/files/` and `http://example.com/sitename/files` and so on. If you started with a Multisite install older than 3.5, it is _not_ an error if your images show with the URL of `/files/`.
+This is a change from Multisite 3.0-3.4.2, where images of subsites were stored in `/wp-content/blogs.dir/` and were shown in http://example.com/files/ and http://example.com/sitename/files and so on. If you started with a Multisite install older than 3.5, it is _not_ an error if your images show with the URL of `/files/`.
 
 Regardless of WP version, these locations cannot be changed by site admins. Only the network admin can make changes on the site settings page. It is not recommended that you change these without understanding how both the `ms-files.php` works in conjunction with your `.htaccess`, as it can easily become non-functional. If the `/files/` urls aren't working, it's indicative of a misconfigured .htaccess or httpd.conf file on your server.
 
@@ -72,7 +72,7 @@ define( 'SUBDOMAIN_INSTALL', false );
 
 You'll also have to change your `.htaccess` to the new setup. You can go to Network Admin — Settings — Network Setup to find the new `.htaccess` rules, or see below.
 
-Note that per the [Settings Requirements](https://codex.wordpress.org/Before_You_Create_A_Network#WordPress_Settings_Requirements) you cannot switch from **Sub-directory** to **Sub-domain** when running on `127.0.0.1` or `localhost`. This can potentially cause an endless loop of reauth=1 on your root site due to cookie handling.
+Note that per the [Settings Requirements](https://developer.wordpress.org/advanced-administration/multisite/prepare-network/#WordPress_Settings_Requirements) you cannot switch from **Sub-directory** to **Sub-domain** when running on `127.0.0.1` or `localhost`. This can potentially cause an endless loop of reauth=1 on your root site due to cookie handling.
 
 ## Apache Virtual Hosts and Mod Rewrite {#apache-virtual-hosts-and-mod-rewrite}
 
@@ -93,7 +93,7 @@ In some instances, you will need to add All to your AllowOverride for all htacce
 
 ## .htaccess and Mod Rewrite {#htaccess-and-mod-rewrite}
 
-Unlike Single Site WordPress, which can work with "ugly" [Permalinks](https://codex.wordpress.org/Using_Permalinks) and thus does not need Mod Rewrite, MultiSite _requires_ its use to format URLs for your subsites. This necessitates the use of an .htaccess file, the format of which will be slightly different if you're using SubFolders or SubDomains. The examples below are the standard .htaccess entries for WordPress SubFolders and SubDomains, when WordPress is installed in the root folder of your website. If you have WordPress in its own folder, you will need to change the value for RewriteBase appropriately.
+Unlike Single Site WordPress, which can work with "ugly" [Permalinks](https://wordpress.org/documentation/article/customize-permalinks/) and thus does not need Mod Rewrite, MultiSite _requires_ its use to format URLs for your subsites. This necessitates the use of an .htaccess file, the format of which will be slightly different if you're using SubFolders or SubDomains. The examples below are the standard .htaccess entries for WordPress SubFolders and SubDomains, when WordPress is installed in the root folder of your website. If you have WordPress in its own folder, you will need to change the value for RewriteBase appropriately.
 
 As a reminder, these are **EXAMPLES** and work in most, but not all, installs.
 
@@ -116,8 +116,8 @@ RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
-RewriteRule ^[_0-9a-zA-Z-]+/(wp-(content|admin|includes).\*) $1 [L]
-RewriteRule ^[_0-9a-zA-Z-]+/(.\*\\.php)$ $1 [L]
+RewriteRule ^[_0-9a-zA-Z-]+/(wp-(content|admin|includes).*) $1 [L]
+RewriteRule ^[_0-9a-zA-Z-]+/(.*\.php)$ $1 [L]
 RewriteRule . index.php [L]
 # END WordPress
 ```
@@ -136,8 +136,8 @@ RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
-RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).\*) $2 [L]
-RewriteRule ^([_0-9a-zA-Z-]+/)?(.\*\\.php)$ $2 [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
 RewriteRule . index.php [L]
 # END WordPress
 ```
@@ -176,8 +176,8 @@ RewriteRule ^wp-admin$ wp-admin/ [R=301,L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
-RewriteRule ^(wp-(content|admin|includes).\*) $1 [L]
-RewriteRule ^(.\*\\.php)$ wp/$1 [L]
+RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
+RewriteRule ^(.*\.php)$ wp/$1 [L]
 RewriteRule . index.php [L]
 # END WordPress
 ```
@@ -203,7 +203,7 @@ The Network Admin Link has moved with each major release of WordPress, as this i
 
 ## Domain Mapping {#domain-mapping}
 
-Before WordPress 4.5, domain mapping requires a domain mapping plugin. In WordPress 4.5+, domain mapping is a native feature in Multisites. Learn how to use this feature at [WordPress Multisite Domain Mapping](https://codex.wordpress.org/WordPress_Multisite_Domain_Mapping)
+Before WordPress 4.5, domain mapping requires a domain mapping plugin. In WordPress 4.5+, domain mapping is a native feature in Multisites. Learn how to use this feature at [WordPress Multisite Domain Mapping](https://developer.wordpress.org/advanced-administration/multisite/domain-mapping/)
 
 ## Moving Multisite {#moving-multisite}
 
@@ -211,8 +211,8 @@ Moving Multisite is more complicated than moving a single install. Please read [
 
 ## Importing into a Network {#importing-into-a-network}
 
-When you've created your WordPress Network for importing other sites, you need to look at the [Migrating Multiple Blogs into WordPress Multisite](https://codex.wordpress.org/Migrating_Multiple_Blogs_into_WordPress_3.0_Multisite) article.
+When you've created your WordPress Network for importing other sites, you need to look at the [Migrating Multiple Blogs into WordPress Multisite](https://wordpress.org/documentation/article/migrating-multiple-blogs-into-wordpress-multisite/) article.
 
 ## Changelog
 
-- 2022-10-25: Original content from [Multisite Network Administration](https://wordpress.org/support/article/multisite-network-administration/).
+- 2022-10-25: Original content from [Multisite Network Administration](https://wordpress.org/documentation/article/multisite-network-administration/).

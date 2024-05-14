@@ -1,3 +1,11 @@
+# Editing wp-config.php
+
+One of the most important files in your WordPress installation is the `wp-config.php` file. This file is located in the root of your WordPress file directory and contains your website’s base configuration details, such as database connection information.
+
+When you first download WordPress, the `wp-config.php` file isn’t included. The WordPress setup process will create a `wp-config.php` file for you based on the information you provide in the [installation](https://developer.wordpress.org/advanced-administration/before-install/howto-install/) process.
+
+It is unlikely that a non-developer would have to edit the wp-config.php file, in the case you are acting on trouble shooting steps provided by a technical person or by your webhost, this [page](https://developer.wordpress.org/advanced-administration/wordpress/wp-config/) should help.
+
 # wp-config.php
 
 TEMPORALLY NOTE: this may link for the simple part, to:
@@ -8,7 +16,7 @@ TEMPORALLY NOTE: this may link for the simple part, to:
 
 The following sections may contain advanced information and some changes might result in unforeseen issues. Please make sure you practice [regular backups](https://developer.wordpress.org/advanced-administration/security/backup/) and know how to restore them before modifying these settings.
 
-### table_prefix {#table-prefix}]
+### table_prefix {#table-prefix}
 
 The **$table_prefix** is the value placed in the front of your database tables. Change the value if you want to use something other than **wp_** for your database prefix. Typically this is changed if you are [installing multiple WordPress blogs](https://developer.wordpress.org/advanced-administration/before-install/multiple-instances/) in the same database, as is done with the multisite feature.
 
@@ -20,7 +28,7 @@ $table_prefix = 'example123_'; // Only numbers, letters, and underscores please!
 
 ### WP_SITEURL {#wp-siteurl}
 
-WP_SITEURL allows the WordPress address (URL) to be defined. The value defined is the address where your WordPress core files reside. It should include the `http://` part too. Do not put a slash "**/**" at the end. Setting this value in `wp-config.php` overrides the [wp_options table](https://codex.wordpress.org/Database_Description#Table:_wp_options) value for **siteurl**. Adding this in can reduce the number of database calls when loading your site. **Note:** This will **not** change the database stored value. The URL will revert to the old database value if this line is ever removed from `wp-config`. [Use the **RELOCATE** constant](https://codex.wordpress.org/Changing_The_Site_URL#Relocate_method) to change the **siteurl** value in the database.
+WP_SITEURL allows the WordPress address (URL) to be defined. The value defined is the address where your WordPress core files reside. It should include the http:// part too. Do not put a slash "**/**" at the end. Setting this value in `wp-config.php` overrides the [wp_options table](https://codex.wordpress.org/Database_Description#Table:_wp_options) value for **siteurl**. Adding this in can reduce the number of database calls when loading your site. **Note:** This will **not** change the database stored value. The URL will revert to the old database value if this line is ever removed from `wp-config`. [Use the **RELOCATE** constant](https://developer.wordpress.org/advanced-administration/upgrade/migrating/) to change the **siteurl** value in the database.
 
 If WordPress is installed into a directory called "wordpress" for the [domain](http://en.wikipedia.org/wiki/Domain_name_system) example.com, define `WP_SITEURL` like this:
 
@@ -44,7 +52,7 @@ define( 'WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/path/to/wordpress'
 
 ### Blog address (URL) {#blog-address-url}
 
-Similar to WP_SITEURL, WP_HOME _overrides the [wp_options table](https://codex.wordpress.org/Database_Description#Table:_wp_options) value for_ home _but does not change it in the database._ **home** is the address you want people to type in their browser to reach your WordPress blog. It should include the `http://` part and should not have a slash "**/**" at the end. Adding this in can reduce the number of database calls when loading your site.
+Similar to WP_SITEURL, WP_HOME _overrides the [wp_options table](https://codex.wordpress.org/Database_Description#Table:_wp_options) value for_ home _but does not change it in the database._ **home** is the address you want people to type in their browser to reach your WordPress blog. It should include the http:// part and should not have a slash "**/**" at the end. Adding this in can reduce the number of database calls when loading your site.
 
 ```
 define( 'WP_HOME', 'http://example.com/wordpress' );
@@ -192,7 +200,7 @@ define( 'WP_DEBUG_DISPLAY', true );
 
 ### WP_DEBUG {#wp-debug}
 
-The [WP_DEBUG](https://codex.wordpress.org/Debugging_in_WordPress) option controls the reporting of some errors and warnings and enables use of the WP_DEBUG_DISPLAY and WP_DEBUG_LOG settings. The default boolean value is false.
+The [WP_DEBUG](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/) option controls the reporting of some errors and warnings and enables use of the WP_DEBUG_DISPLAY and WP_DEBUG_LOG settings. The default boolean value is false.
 
 ```
 define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true ); // 5.2 and later
@@ -221,7 +229,7 @@ Note: When `development` is returned by [wp_get_environment_type()](https://deve
 
 ### SCRIPT_DEBUG {#script-debug}
 
-[SCRIPT_DEBUG](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/) is a related constant that will force WordPress to use the "dev" versions of scripts and stylesheets in `wp-includes/js`, `wp-includes/css`, `wp-admin/js`, and `wp-admin/css` will be loaded instead of the `.min.css` and `.min.js` versions.. If you are planning on modifying some of WordPress' built-in JavaScript or Cascading Style Sheets, you should add the following code to your config file:
+[SCRIPT_DEBUG](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/) is a related constant that will force WordPress to use the "dev" versions of scripts and stylesheets in `wp-includes/js`, `wp-includes/css`, `wp-admin/js`, and `wp-admin/css` will be loaded instead of the `.min.css` and `.min.js` versions. If you are planning on modifying some of WordPress' built-in JavaScript or Cascading Style Sheets, you should add the following code to your config file:
 
 ```
 define( 'SCRIPT_DEBUG', true );
@@ -307,7 +315,7 @@ if ( WP_DEBUG ) {
 }
 ```
 
-Confusing the issue is that WordPress has three (3) constants that look like they could do the same thing. First off, remember that if WP_DEBUG is false, it and the other two WordPress DEBUG constants do not do anything. The PHP directives, whatever they are, will prevail. Except for 'error_reporting', WordPress will set this to 4983 if WP_DEBUG is defined as false. Second, even if WP_DEBUG is true, the other constants only do something if they too are set to true. If they are set to false, the PHP directives remain unchanged. For example, if your `php.ini` file has the directive ('display_errors' = 'On'); but you have the statement define( 'WP_DEBUG_DISPLAY', false ); in your `wp-config.php` file, errors will still be displayed on screen even though you tried to prevent it by setting WP_DEBUG_DISPLAY to false because that is the PHP configured behavior. This is why it's very important to set the PHP directives to what you need in case any of the related WP constants are set to false. To be safe, explicitly set/define both types. More detailed descriptions of the WP constants is available at [Debugging in WordPress](https://codex.wordpress.org/Debugging_in_WordPress).
+Confusing the issue is that WordPress has three (3) constants that look like they could do the same thing. First off, remember that if WP_DEBUG is false, it and the other two WordPress DEBUG constants do not do anything. The PHP directives, whatever they are, will prevail. Except for 'error_reporting', WordPress will set this to 4983 if WP_DEBUG is defined as false. Second, even if WP_DEBUG is true, the other constants only do something if they too are set to true. If they are set to false, the PHP directives remain unchanged. For example, if your `php.ini` file has the directive ('display_errors' = 'On'); but you have the statement define( 'WP_DEBUG_DISPLAY', false ); in your `wp-config.php` file, errors will still be displayed on screen even though you tried to prevent it by setting WP_DEBUG_DISPLAY to false because that is the PHP configured behavior. This is why it's very important to set the PHP directives to what you need in case any of the related WP constants are set to false. To be safe, explicitly set/define both types. More detailed descriptions of the WP constants is available at [Debugging in WordPress](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/).
 
 For your public, production WordPress installation, you might consider placing the following in your `wp-config.php` file, even though it may be partly redundant:
 
@@ -388,7 +396,7 @@ CUSTOM_USER_TABLE is easiest to adopt during initial Setup your first instance o
 
 ### Language and Language Directory {#language-and-language-directory}
 
-WordPress [Version 4.0](https://codex.wordpress.org/Version_4.0) allows you to change the language in your WordPress [Administration Screens](https://wordpress.org/support/article/administration-screens/). To change the language in the admin settings screen. Go to [Settings](https://wordpress.org/support/article/administration-screens/#settings-configuration-settings) > [General](https://wordpress.org/support/article/settings-general-screen/) and select Site Language.
+WordPress [Version 4.0](https://wordpress.org/documentation/wordpress-version/version-4-0/) allows you to change the language in your WordPress [Administration Screens](https://wordpress.org/documentation/article/administration-screens/). To change the language in the admin settings screen. Go to [Settings](https://wordpress.org/documentation/article/administration-screens/#settings-configuration-settings) > [General](https://wordpress.org/documentation/article/settings-general-screen/) and select Site Language.
 
 #### WordPress v3.9.6 and below {#wordpress-v3-9-6-and-below}
 
@@ -439,7 +447,7 @@ Example to provide setgid:
 define( 'FS_CHMOD_DIR', ( 02755 & ~umask() ) );
 ```
 
-Note: '**0755′** and '**02755**' are octal values. Octal values must be prefixed with a 0 and are not delineated with single quotes ('). See Also: [Changing File Permissions](https://codex.wordpress.org/Changing_File_Permissions)
+Note: '**0755′** and '**02755**' are octal values. Octal values must be prefixed with a 0 and are not delineated with single quotes ('). See Also: [Changing File Permissions](https://developer.wordpress.org/advanced-administration/server/file-permissions/)
 
 ### WordPress Upgrade Constants {#wordpress-upgrade-constants}
 
@@ -612,7 +620,7 @@ define( 'DISALLOW_FILE_MODS', true );
 
 ### Require SSL for Admin and Logins {#require-ssl-for-admin-and-logins}
 
-**Note:** WordPress [Version 4.0](https://codex.wordpress.org/Version_4.0) deprecated FORCE_SSL_LOGIN. Please use FORCE_SSL_ADMIN.
+**Note:** WordPress [Version 4.0](https://wordpress.org/documentation/wordpress-version/version-4-0/) deprecated FORCE_SSL_LOGIN. Please use FORCE_SSL_ADMIN.
 
 FORCE_SSL_ADMIN is for when you want to secure logins and the admin area so that both passwords and cookies are never sent in the clear. See also [HTTPS](https://developer.wordpress.org/advanced-administration/security/https/) for more details.
 
@@ -622,11 +630,11 @@ define( 'FORCE_SSL_ADMIN', true );
 
 ### Block External URL Requests {#block-external-url-requests}
 
-Block external URL requests by defining WP_HTTP_BLOCK_EXTERNAL as true and this will only allow localhost and your blog to make requests. The constant WP_ACCESSIBLE_HOSTS will allow additional hosts to go through for requests. The format of the WP_ACCESSIBLE_HOSTS constant is a comma separated list of hostnames to allow, wildcard domains are supported, eg \*.wordpress.org will allow for all subdomains of wordpress.org to be contacted.
+Block external URL requests by defining WP_HTTP_BLOCK_EXTERNAL as true and this will only allow localhost and your blog to make requests. The constant WP_ACCESSIBLE_HOSTS will allow additional hosts to go through for requests. The format of the WP_ACCESSIBLE_HOSTS constant is a comma separated list of hostnames to allow, wildcard domains are supported, eg `*.wordpress.org` will allow for all subdomains of wordpress.org to be contacted.
 
 ```
 define( 'WP_HTTP_BLOCK_EXTERNAL', true );
-define( 'WP_ACCESSIBLE_HOSTS', 'api.wordpress.org,\*.github.com' );
+define( 'WP_ACCESSIBLE_HOSTS', 'api.wordpress.org,*.github.com' );
 ```
 
 ### Disable WordPress Auto Updates {#disable-wordpress-auto-updates}
@@ -678,3 +686,4 @@ To save the file, choose **File > Save As > wp-config.php** and save the file in
 
 - 2022-10-25: Fix content and links.
 - 2022-09-04: Original content from [wp-config.php](https://developer.wordpress.org/apis/wp-config-php/); ticket [Github](https://github.com/WordPress/Documentation-Issue-Tracker/issues/349).
+- 2023-01-20: Add content to the start from [documentation](https://wordpress.org/documentation/article/editing-wp-config-php/) ticket [Github](https://github.com/WordPress/Advanced-administration-handbook/issues/89)

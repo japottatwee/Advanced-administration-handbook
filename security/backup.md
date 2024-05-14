@@ -2,7 +2,7 @@
 
 ## WordPress Backups
 
-> Note: Want to skip the hard stuff? Skip to Automated Solutions such as [WordPress Plugins](https://wordpress.org/plugins/search.php?q=backup) for backups.
+_Note: Want to skip the hard stuff? Skip to Automated Solutions such as [WordPress Plugins](https://wordpress.org/plugins/search.php?q=backup) for backups._
 
 Your WordPress database contains every post, every comment and every link you have on your blog. If your database gets erased or corrupted, you stand to lose everything you have written. There are many reasons why this could happen, and not all are things you can control. With a proper backup of your WordPress database and files, you can quickly restore things back to normal.
 
@@ -11,13 +11,13 @@ Instructions to back up your WordPress site include:
 1. WordPress Site and your WordPress Database
 2. Automatic WordPress backup options
 
-In addition, support is provided online at the [WordPress Support Forum](https://wordpress.org/support/) to help you through the process.
+In addition, support is provided online at the [WordPress Support Forum](https://wordpress.org/documentation/) to help you through the process.
 
 Site backups are essential because problems inevitably occur and you need to be in a position to take action when disaster strikes. Spending a few minutes to make an easy, convenient backup of your database will allow you to spend even more time being creative and productive with your website.
 
 ### Backup Questions
 
-> Back up your database regularly, and always before an upgrade.
+_Back up your database regularly, and always before an upgrade._
 
 **How often should you back up?**
 
@@ -68,7 +68,7 @@ Most website hosts provide software to back up your site. Check with your host t
 
 **Copy Your Files to Your Desktop**
 
-Using [FTP Clients](https://developer.wordpress.org/advanced-administration/upgrade/ftp/) or [UNIX Shell Skills](https://codex.wordpress.org/UNIX%20Shell%20Skills) you can copy the files to a folder on your computer. Once there, you can compress them into a zip file to save space, allowing you to keep several versions.
+Using [FTP Clients](https://developer.wordpress.org/advanced-administration/upgrade/ftp/) or [UNIX Shell Skills](https://codex.wordpress.org/UNIX_Shell_Skills) you can copy the files to a folder on your computer. Once there, you can compress them into a zip file to save space, allowing you to keep several versions.
 
 Remember, keep at least three backups on file, just in case one is corrupted or lost, and store them in different places and on different mediums (such as CD's, DVDs or hard drives).
 
@@ -190,5 +190,5 @@ Various plugins exist to take automatic scheduled backups of your WordPress data
 
 ## Changelog
 
-- 2022-10-25: Original content from [Restoring Your Database From Backup](https://wordpress.org/support/article/restoring-your-database-from-backup/).
-- 2022-09-11: Original content from [WordPress Backups](https://wordpress.org/support/article/wordpress-backups/).
+- 2022-10-25: Original content from [Restoring Your Database From Backup](https://wordpress.org/documentation/article/restoring-your-database-from-backup/).
+- 2022-09-11: Original content from [WordPress Backups](https://wordpress.org/documentation/article/wordpress-backups/).

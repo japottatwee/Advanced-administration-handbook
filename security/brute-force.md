@@ -8,6 +8,14 @@ Due to the nature of these attacks, you may find your server's memory goes throu
 
 This sort of attack is not endemic to WordPress, it happens with every webapp out there, but WordPress is popular and thus a frequent target.
 
+### Throttling Multiple Login Attempts {#throttling-multiple-login-attempts}
+
+One of the most common kinds of attacks targeting internet services is brute force login attacks. With this form of attack, a malicious party tries to guess WordPress usernames and passwords. The attacker needs only the URL of a user site to perform an attack. Software is readily available to perform these attacks using botnets, making increasingly complex passwords easier to find.
+
+The best protection against this kind of attack is to set and recommend and/or enforce strong passwords for WordPress users.
+
+It is also recommended for hosts to throttle login attempts at the network and server level when possible. It's helpful to throttle both maximum logins per site over time, and maximum attempts per IP over time across server or infrastructure to mitigate bot password brute-force attacks. This can be done at the plugin level as well, but not without incurring the additional resource utilization caused during these attacks.
+
 ### Protect Yourself {#protect-yourself}
 
 A common attack point on WordPress is to hammer the `wp-login.php` file over and over until they get in or the server dies. You can do some things to protect yourself.
@@ -35,7 +43,7 @@ Things to avoid when choosing a password:
 
 A strong password is necessary not just to protect your blog content. A hacker who gains access to your administrator account is able to install malicious scripts that can potentially compromise your entire server.
 
-To further increase the strength of your password, you can enable [Two Step Authentication](https://codex.wordpress.org/Two Step Authentication) to further protect your blog.
+To further increase the strength of your password, you can enable [Two Step Authentication](https://developer.wordpress.org/advanced-administration/security/mfa/) to further protect your blog.
 
 #### Plugins {#plugins}
 
@@ -119,6 +127,14 @@ user3:pass3
 Unfortunately there is no easy way of configuring a password protected wp-login.php on Windows Server IIS. If you use a .htaccess processor like Helicon Ape, you can use the .htaccess example mentioned above. Otherwise you'd have to ask your hosting provider to set up Basic Authentication.
 
 All passwords must be encoded by function `crypt(3)`. You can use an online [htpasswd generator](http://www.htaccesstools.com/htpasswd-generator/) to encrypt your password.
+
+#### Throttle Multiple Login Attempts
+
+One of the most common kinds of attacks targeting internet services is brute force login attacks. With this form of attack, a malicious party tries to guess WordPress usernames and passwords. The attacker needs only the URL of a user site to perform an attack. Software is readily available to perform these attacks using botnets, making increasingly complex passwords easier to find.
+
+The best protection against this kind of attack is to set and recommend and/or enforce strong passwords for WordPress users.
+
+It is also recommended for hosts to throttle login attempts at the network and server level when possible. It’s helpful to throttle both maximum logins per site over time, and maximum attempts per IP over time across server or infrastructure to mitigate bot password brute-force attacks. This can be done at the plugin level as well, but not without incurring the additional resource utilization caused during these attacks.
 
 #### Limit Access to wp-login.php by IP {#limit-access-to-wp-login-php-by-ip}
 
@@ -284,4 +300,4 @@ Services like CloudFlare and Sucuri CloudProxy can also help mitigate these atta
 
 ## Changelog
 
-- 2022-10-25: Original content from [Brute Force Attacks](https://wordpress.org/support/article/brute-force-attacks/).
+- 2022-10-25: Original content from [Brute Force Attacks](https://wordpress.org/documentation/article/brute-force-attacks/).
