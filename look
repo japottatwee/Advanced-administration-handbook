@@ -1,0 +1,14 @@
+rpc CreateBook(CreateBookRequest) returns (Book) {
+  option (google.api.http) = {
+    post: "/v1/{parent=publishers/*}/books"
+    body: "book"
+    additional_bindings: {
+      post: "/v1/{parent=authors/*}/books"
+      body: "book"
+    }
+    additional_bindings: {
+      post: "/v1/books"
+      body: "book"
+    }
+  };
+}
