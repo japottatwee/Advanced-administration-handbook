@@ -30,7 +30,7 @@ define( 'WP_SITEURL', 'http://example.com' );
 
 This is not necessarily the best fix, it's just hard-coding the values into the site itself. You won't be able to edit them on the General settings page anymore when using this method.
 
-####Edit functions.php
+#### Edit functions.php
 
 If you have access to the site via FTP, then this method will help you quickly get a site back up and running, if you changed those values incorrectly.
 
@@ -297,7 +297,7 @@ If you do a search and replace on your entire database to change the URLs, you c
 
 1. Use the [Velvet Blues Update URLs](https://wordpress.org/plugins/velvet-blues-update-urls/) or [Better Search Replace](https://wordpress.org/plugins/better-search-replace/) plugins if you can access your Dashboard.
 2. Use [WP-CLI's search-replace](http://wp-cli.org/commands/search-replace/) if your hosting provider (or you) have installed WP-CLI.
-3. Use the [Search and Replace for WordPress Databases Script](https://interconnectit.com/products/search-and-replace-for-wordpress-databases/) to safely change all instances on your old domain or path to your new one. (** only use this option if you are comfortable with database administration ** )
+3. Use the [Search and Replace for WordPress Databases Script](https://interconnectit.com/products/search-and-replace-for-wordpress-databases/) to safely change all instances on your old domain or path to your new one. (**only use this option if you are comfortable with database administration** )
 
 Note: Only perform a search and replace on the wp_posts table.
 Note: Search and Replace from Interconnectit is a 3rd party script
@@ -425,15 +425,11 @@ If you are moving from subdomains to subfolders, or vice-versa, remember to adju
 
 ### Related Links
 
-- [How to move WordPress site to another server with zero downtime](http://www.prelovac.com/vladimir/how-to-move-wordpress-site-to-another-server-with-zero-downtime)
 - [Moving a blog from wordpress.com to self-hosted blog](http://www.problogger.net/archives/2009/01/03/how-to-move-from-wordpresscom-to-wordpressorg/)
 - [Moving WordPress to a new domain or server](http://sltaylor.co.uk/blog/moving-wordpress-new-domain-server/)
 - [Italian version of this article – Versione italiana dell'articolo](http://www.valent-blog.eu/2007/09/14/trasferire-wordpress/)
-- [How to move a WordPress Blog or Website](http://www.velvetblues.com/web-development-blog/how-to-move-a-wordpress-blog-or-website/)
 - [Search and Replace for WordPress Databases](http://interconnectit.com/124/search-and-replace-for-wordpress-databases/)
-- [Online WordPress Serialized PHP Search and Replace](http://pixelentity.com/wordpress-search-replace-domain/)
-- [Cloning a live WordPress site to a local Mac test environment](http://egalo.com/2012/05/15/clone-live-wordpress-to-local-env/)
-- P[HP script to replace site url in WordPress database dump, even with WPML](http://blog.lavoie.sl/2012/07/php-script-to-replace-site-url-in.html)
+- [PHP script to replace site url in WordPress database dump, even with WPML](http://blog.lavoie.sl/2012/07/php-script-to-replace-site-url-in.html)
 - [The Duplicator plugin helps administrators move a site from one location to another](https://wordpress.org/plugins/duplicator/)
 - [Technical tutorial on moving your WordPress blog to Bitnami's AWS configuration](http://www.agileweboperations.com/migrate-your-wordpress-blog-to-a-bitnami-ec2-instance)
 
